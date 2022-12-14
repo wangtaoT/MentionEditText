@@ -37,6 +37,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onCloseSearchView() {
+                binding.rlDialog.visibility = View.GONE
             }
         }
 
