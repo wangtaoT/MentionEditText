@@ -1,3 +1,3 @@
 
 ### 演示
-![jpeg](https://github.com/wangtaoT/MentionEditText/blob/main/demo.jpeg)
+<img src="https://github.com/wangtaoT/MentionEditText/blob/main/demo.jpeg" width="250" />  
