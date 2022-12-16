@@ -71,7 +71,7 @@ public class MentionTextWatcher implements TextWatcher {
             if (mentionChar == '#') {
                 int index = charSequence.toString().lastIndexOf("#");
                 if (mEditText.getEditDataListener() != null) {
-                    mEditText.getEditDataListener().onTopicName(index);
+                    mEditText.getEditDataListener().onEditAddHashtag(index);
                 }
             } else if (mentionChar == ' ') {
                 if (mEditText.getEditDataListener() != null) {
@@ -90,7 +90,7 @@ public class MentionTextWatcher implements TextWatcher {
             String[] list = mentionChar.split("@");
             if (mentionChar.endsWith("@")) {
                 if (mEditText.getEditDataListener() != null) {
-                    mEditText.getEditDataListener().onAtUserName("", selectionStart - 1, 1);
+                    mEditText.getEditDataListener().onEditAddAt("", selectionStart - 1, 1);
                 }
             } else if (!mentionChar.contains("@")
                     || (list.length == 1 && list[0].isEmpty())
@@ -105,7 +105,7 @@ public class MentionTextWatcher implements TextWatcher {
                 String keyword = list[list.length - 1];
                 int index = mentionChar.lastIndexOf(keyword) - 1;
                 if (mEditText.getEditDataListener() != null) {
-                    mEditText.getEditDataListener().onAtUserName(keyword, index, keyword.length() + 1);
+                    mEditText.getEditDataListener().onEditAddAt(keyword, index, keyword.length() + 1);
                 }
             }
         } catch (Exception e) {

@@ -28,11 +28,11 @@ class MainActivity : AppCompatActivity() {
 
 
         binding.etContent.editDataListener = object : EditDataListener {
-            override fun onAtUserName(str: String, start: Int, length: Int) {
+            override fun onEditAddAt(str: String, start: Int, length: Int) {
                 showUserDialog(str)
             }
 
-            override fun onTopicName(start: Int) {
+            override fun onEditAddHashtag(start: Int) {
                 showTopicDialog()
             }
 
