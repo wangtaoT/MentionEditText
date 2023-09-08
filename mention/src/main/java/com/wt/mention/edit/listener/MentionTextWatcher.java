@@ -75,7 +75,7 @@ public class MentionTextWatcher implements TextWatcher {
                 }
             } else if (mentionChar == ' ') {
                 if (mEditText.getEditDataListener() != null) {
-                    mEditText.getEditDataListener().onCloseSearchView();
+                    mEditText.getEditDataListener().onCloseEdit();
                 }
             }
         }
@@ -99,7 +99,7 @@ public class MentionTextWatcher implements TextWatcher {
                 //2、只有一个空字符 关闭
                 //3、最后一个是 空、换行、# 关闭
                 if (mEditText.getEditDataListener() != null) {
-                    mEditText.getEditDataListener().onCloseSearchView();
+                    mEditText.getEditDataListener().onCloseEdit();
                 }
             } else {
                 String keyword = list[list.length - 1];

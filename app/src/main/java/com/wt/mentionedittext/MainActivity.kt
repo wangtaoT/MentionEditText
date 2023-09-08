@@ -1,14 +1,7 @@
 package com.wt.mentionedittext
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import com.wt.mention.bean.MentionTopic
 import com.wt.mention.bean.MentionUser
@@ -36,7 +29,7 @@ class MainActivity : AppCompatActivity() {
                 showTopicDialog()
             }
 
-            override fun onCloseSearchView() {
+            override fun onCloseEdit() {
                 if (binding.rlDialog.isShown && binding.llUser.isShown) {
                     binding.rlDialog.visibility = View.GONE
                 }
@@ -47,15 +40,29 @@ class MainActivity : AppCompatActivity() {
             showTopicDialog()
         }
         binding.btnAddUser.setOnClickListener {
-            val index: Int = binding.etContent.selectionStart
-            binding.etContent.editableText.insert(index, "@")
+            binding.etContent.insertText("@")
+        }
+
+        binding.btnInsert.setOnClickListener {
+            binding.etContent.setText("#国庆快乐 这是一个话题标签")
+            binding.etContent.insertConvert(
+                MentionTopic(
+                    "11",
+                    "国庆快乐",
+                ),
+                0,
+                6
+            )
         }
 
 
         binding.btnGet.setOnClickListener {
-            binding.etContent.formatResult.topicList?.let {
+            val list = binding.etContent.formatResult.topicList
+            if (list == null || list.size == 0) {
+                binding.tvData.text = ""
+            } else {
                 val jsonArray = JSONArray()
-                for (item in it) {
+                for (item in list) {
                     val jsonObject = JSONObject()
                     jsonObject.put("id", item.id)
                     jsonObject.put("name", item.name)
@@ -68,9 +75,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnGet2.setOnClickListener {
-            binding.etContent.formatResult.userList?.let {
+            val list = binding.etContent.formatResult.userList
+            if (list == null || list.size == 0) {
+                binding.tvData.text = ""
+            } else {
                 val jsonArray = JSONArray()
-                for (item in it) {
+                for (item in list) {
                     val jsonObject = JSONObject()
                     jsonObject.put("id", item.id)
                     jsonObject.put("name", item.name)

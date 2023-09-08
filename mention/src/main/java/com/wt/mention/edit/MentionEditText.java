@@ -151,9 +151,17 @@ public class MentionEditText extends AppCompatEditText {
     }
 
     /**
+     * 光标位置插入普通文字
+     */
+    public void insertText(String text) {
+        int index = getSelectionStart();
+        getEditableText().insert(index, text);
+    }
+
+    /**
      * 原有文字区域替换为高亮
      */
-    public void insertRecover(InsertData insertData, int start, int length) {
+    public void insertConvert(InsertData insertData, int start, int length) {
         if (null == insertData) {
             return;
         }
